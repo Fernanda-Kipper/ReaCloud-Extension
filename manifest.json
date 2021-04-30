@@ -3,9 +3,9 @@
     "name": "ReaCloud",
     "description": "Salva URL´s de possíveis recursos educacionais e administre depois no seu painel do Reacloud",
     "version": "1.0.0",
-    "web_accessible_resources": ["icon.png, logo_blue.png", "material.svg"],
+    "web_accessible_resources": ["images/*"],
     "browser_action":{
-        "default_icon": "src/icon.png",
+        "default_icon": "src/images/icon.png",
         "default_popup": "src/popup.html"
     },
     "permissions": [
@@ -16,7 +16,7 @@
         "matches": ["http://localhost:3000/", "*://reacloud.vercel.app/*"]
     },
     "background": {
-        "scripts": ["src/background.js"],
+        "scripts": ["src/scripts/background.js"],
         "persistent": false
     }
 }

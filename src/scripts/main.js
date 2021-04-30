@@ -6,7 +6,7 @@ function afterExclusionMode(){
     button.removeAttribute('class')
     button.removeEventListener('click', exclude)
     button.style = "display: none;"
-    paragraph.textContent = "ATENÇÃO: Recarregue a página caso deseja salvar esse link novamente"
+    paragraph.textContent = "ATENÇÃO: Feche e abra a extensão caso deseja salvar esse link novamente"
 }
 
 function exclude(){
