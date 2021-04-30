@@ -1,0 +1,105 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Relaway',Arial, Helvetica, sans-serif;
+}
+
+html{
+    font-size: 14px;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    
+    min-width: 250px;
+    height: 220px;
+
+    border-radius: 20px;
+}
+
+body header{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: flex-start;
+
+    box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.1);
+
+    width: 100%;
+    height: 30px;
+    position: fixed;
+    top: 0;
+}
+
+body header h1{
+    font-size: 1rem;
+    font-weight: 500;
+    color: #277496;
+}
+
+body header img{
+    height: 30px;
+}
+
+body main{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+    height: 100%;
+    width: 100%;
+}
+
+body main p{
+    text-align: center;
+    max-width: 200px;
+    font-weight: 400;
+    color: #7d7d7d;
+    font-size: 1rem;
+}
+
+#saveButton{
+    background: transparent;
+    color: #277496;
+    border: 1px solid #277496;
+
+    cursor: pointer;
+    border-radius: 20px;
+    margin-top: 10px;
+    width: 150px;
+    padding: 5px;
+}
+
+#saveButton.delete{
+    color: rgb(219, 63, 63);
+    border:1px solid rgb(219, 63, 63);
+    padding: 10px 5px;
+}
+
+body main div{
+    border-top: 2px solid #c4c4c4;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body main div a{
+    text-decoration: none;
+    color: #c4c4c4;
+    font-weight: 600;
+    display: inline;
+    font-size: 1rem;
+}
+
+body main div img{
+    height: 20px;
+    margin-right: 10px;
+}
