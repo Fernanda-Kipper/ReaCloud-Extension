@@ -3,11 +3,23 @@ chrome.runtime.onMessageExternal.addListener(
         if(request.getTargetData){
             chrome.storage.sync.get(['resources'], function(result) {
                 if(result){
-                    return sendResponse(result.resources)
+                    return sendResponse({setTargetData: result.resources})
                 }else{
-                    return sendResponse([])
+                    return sendResponse({setTargetData: false})
                 }
             })
+        }
+        else if(request.delete){
+            try{
+                chrome.storage.sync.get(['resources'], function(result) {
+                    const newResourceList = result.resources.filter(resource => resource.link != request.delete)
+                    chrome.storage.sync.set({'resources': newResourceList}, function() {
+                        return sendResponse({deleted: true, setTargetData: newResourceList})
+                    })
+                })
+            }catch(error){
+                return sendResponse({deleted: false})
+            }
         }
     }
 )
