@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "ReaCloud",
     "description": "Salva URL´s de possíveis recursos educacionais e administre depois no seu painel do Reacloud",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "web_accessible_resources": ["images/*"],
     "browser_action":{
         "default_icon": "src/images/icon.png",
@@ -13,7 +13,7 @@
         "tabs"
     ],
     "externally_connectable": {
-        "matches": ["http://localhost:3000/", "*://reacloud.vercel.app/*"]
+        "matches": ["*://reacloud.vercel.app/*"]
     },
     "background": {
         "scripts": ["src/scripts/background.js"],
