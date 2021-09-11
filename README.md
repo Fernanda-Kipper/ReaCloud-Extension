@@ -1,23 +1,27 @@
-<h1 align="center">Extensão para Chrome do ReaCloud</h1>
-
-## Table of Contents
-
-- [Sobre](#Sobre-o-projeto)
-- [Rodando Localmente](#Rodando-localmente)
-
-
-## Sobre o projeto
-
-Esse projeto foi construído com o intuito de facilitar o processo de geração de conteúdo para os usuários da ferramenta ReaCloud. A extensão permite que o usuário vá salvando links de recursos educacionais para mais tarde publicá-los no repositório, fazendo o manejo desses links mais tarde no ReaCloud.
+<p align="center">
+  <img align="center" src="./src/images/icon.png" width="100">
+</p>
 
 <h1 align="center">
-    <img align="center" src="./src/images/print_save.png" width="300">
-    <img align="center" src="./src/images/print_exclude.png" width="300">
+  Extesnão para Chrome ReaCloud
 </h1>
 
-## Rodando Localmente
+<p align="center">
+ <a href="#project">Projeto</a> •
+ <a href="#running">Rodando localmente</a> • 
+ <a href="#contribute">Contribuindo</a>
+</p>
 
-Para rodar a extensão localmente no seu chrome você deve:
+
+<h2 id="project">Extensão para navegadores Chrome ReaCloud </h2>
+
+Esse projeto foi construído com o intuito de facilitar o processo de publicação de Recursos para os usuários da ferramenta ReaCloud. A extensão permite que o usuário armazene no que chamamos de "Mochila" os links para os mais materias, para depois  publicá-los no repositório, fazendo o manuseio desses links no painel da ferramenta.
+
+[Link para Chrome Store](https://chrome.google.com/webstore/detail/reacloud/flnllibpodbojpadpmpajmggfjchabdp?hl=pt-BR&authuser=0)
+
+<h2 id="running">Rodando Localmente</h2>
+
+Para rodar a extensão localmente no seu navagador Chrome você deve:
 
 - Clonar esse repositório
 - Abrir o link 'chrome://extensions/'
@@ -28,3 +32,18 @@ Para rodar a extensão localmente no seu chrome você deve:
 📌 Lembre-se: a pasta que você deve realizar o upload para o Google é a `root` do projeto, que contém dentro de si a pasta `src` e os arquivos `manifest.json` e `README.md`
 
 - Sempre que realizar uma mudança nos arquivos da extensão atualize o projeto no link 'chrome://extensions/', clicando em atualizar
+
+<h2 id="contribute">Contribuindo 🚀</h2>
+
+Se você deseja contribuir, clone esse repositório, crie sua branch e coloque a mão na massa!
+
+```bash
+git clone git@github.com:Fernanda-Kipper/ReaCloud-Extension.git
+git checkout -b feature/NAME
+```
+
+ No final, abra um Pull Request explicando o problema/melhoria identificado, o que foi feito para resolver e screenshots das alterações visuais :)
+
+[Como fazer um Pull Request](https://www.atlassian.com/br/git/tutorials/making-a-pull-request)
+
+[Padrões de Commit](https://github.com/iuricode/padroes-de-commits)
