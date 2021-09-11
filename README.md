@@ -3,7 +3,7 @@
 </p>
 
 <h1 align="center">
-  Extesnão para Chrome ReaCloud
+  Extensão para Chrome ReaCloud
 </h1>
 
 <p align="center">
