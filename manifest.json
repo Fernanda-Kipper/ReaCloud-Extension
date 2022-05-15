@@ -13,7 +13,7 @@
         "tabs"
     ],
     "externally_connectable": {
-        "matches": ["*://reacloud.vercel.app/*"]
+        "matches": ["https://reacloud.com.br/*"]
     },
     "background": {
         "scripts": ["src/scripts/background.js"],
