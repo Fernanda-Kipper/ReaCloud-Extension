@@ -1,8 +1,8 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "ReaCloud",
     "description": "Salva URL´s de possíveis recursos educacionais e administre depois no seu painel do Reacloud",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "web_accessible_resources": ["images/*"],
     "browser_action":{
         "default_icon": "src/images/icon.png",
