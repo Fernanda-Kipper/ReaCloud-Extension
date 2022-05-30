@@ -31,7 +31,18 @@ Para rodar a extensão localmente no seu navagador Chrome você deve:
 
 📌 Lembre-se: a pasta que você deve realizar o upload para o Google é a `root` do projeto, que contém dentro de si a pasta `src` e os arquivos `manifest.json` e `README.md`
 
-- Sempre que realizar uma mudança nos arquivos da extensão atualize o projeto no link 'chrome://extensions/', clicando em atualizar
+- Sempre que realizar uma mudança nos arquivos da extensão atualize o projeto no link [chrome://extensions/](chrome://extensions/), clicando em atualizar
+
+<h3>Conectando com aplicação local </h3>
+Para que seja possível que uma aplicação rodando localmente se conecte com a extensão você deve atualizar o valor de `externally_connectable` no arquivo `manifest.json`
+
+Dentro do array de `matches` você deve adicionar a URL local que deseja conectar. Por exemplo, se estiver com ReaCloud rodando localmente, você atualizaria seu array de `matches` para o seguinte:
+
+```json
+  "externally_connectable": {
+      "matches": ["https://reacloud.com.br/*", "http://localhost:3000/*"]
+  },
+```
 
 <h2 id="contribute">Contribuindo 🚀</h2>
 
