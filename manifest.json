@@ -3,8 +3,11 @@
     "name": "ReaCloud",
     "description": "Salva URL´s de possíveis recursos educacionais e administre depois no seu painel do Reacloud",
     "version": "1.2.0",
-    "web_accessible_resources": ["images/*"],
-    "browser_action":{
+    "web_accessible_resources": [{
+        "resources": ["images/*"],
+        "matches": ["<all_urls>"]
+      }],
+    "action":{
         "default_icon": "src/images/icon.png",
         "default_popup": "src/popup.html"
     },
@@ -13,10 +16,9 @@
         "tabs"
     ],
     "externally_connectable": {
-        "matches": ["https://reacloud.com.br/*"]
+        "matches": ["https://reacloud.com.br/*", "http://localhost:3000/*"]
     },
     "background": {
-        "scripts": ["src/scripts/background.js"],
-        "persistent": false
+        "service_worker": "src/scripts/background.js"
     }
 }
