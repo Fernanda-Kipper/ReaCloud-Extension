@@ -16,7 +16,7 @@
         "tabs"
     ],
     "externally_connectable": {
-        "matches": ["https://reacloud.com.br/*"]
+        "matches": ["https://*.reacloud.com.br/*"]
     },
     "background": {
         "service_worker": "src/scripts/background.js"
