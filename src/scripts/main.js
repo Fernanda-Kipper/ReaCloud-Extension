@@ -51,8 +51,10 @@ function save(){
             fetch("https://youtube.googleapis.com/youtube/v3/videos?part=snippet&id=" + video_id + "&key=AIzaSyCOKOSVWLbAmThCnn4L4W3AjpPhOUDMQHk")
             .then((data)=>{
                 return data.json()
-            }).then((snippet) => {
-                console.log(snippet)
+            }).then((result) => {
+                console.log(result)     
+                console.log(result.items)
+                console.log(result.items[0].snippet)
             })
 
             newResource = {
