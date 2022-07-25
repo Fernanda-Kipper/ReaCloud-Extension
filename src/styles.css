@@ -46,6 +46,7 @@ body header h1{
 body header img{
     height: 30px;
     margin-right: 10px;
+    margin-left: 5px;
 }
 
 body main{
@@ -139,4 +140,11 @@ body main div a{
 body main div img{
     height: 20px;
     margin-right: 10px;
+}
+
+/* myResources */
+
+body section div ul li{
+    text-align: center;
+    font-size: larger;
 }

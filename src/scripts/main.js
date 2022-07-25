@@ -33,23 +33,55 @@ function deleteButtonMode(){
 
 function save(){
     chrome.storage.sync.get(['resources'], function(result) {
-        let newResource = {link: currentUrl, title: input.value}
-        if(result.resources && result.resources.length > 0){
-            chrome.storage.sync.set({'resources': [...result.resources, newResource]}, function() {
-                paragraph.textContent = 'Salvo com sucesso'
-                deleteButtonMode()
+
+        let newResource;
+
+        chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
+            
+
+            //Extração do ID do vídeo a partir da URL
+            var video_id = (tabs[0].url).split('v=')[1];
+            var endPosition = video_id.indexOf('&');
+            if(endPosition != -1) {
+            video_id = video_id.substring(0, endPosition);
+            }
+
+            console.log(video_id)
+
+            fetch("https://youtube.googleapis.com/youtube/v3/videos?part=snippet&id=" + video_id + "&key=AIzaSyCOKOSVWLbAmThCnn4L4W3AjpPhOUDMQHk")
+            .then((data)=>{
+                return data.json()
+            }).then((snippet) => {
+                console.log(snippet)
             })
-        }else{
-            chrome.storage.sync.set({'resources': [newResource]}, function() {
-                paragraph.textContent = 'Salvo com sucesso'
-                deleteButtonMode()
-            })
-        }
+
+            newResource = {
+                link: currentUrl, 
+                title: input.value,
+                description: "null",
+                author: "null",
+                }
+
+                console.log(newResource);
+
+            if(result.resources && result.resources.length > 0){
+                chrome.storage.sync.set({'resources': [...result.resources, newResource]}, function() {
+                    paragraph.textContent = 'Salvo com sucesso'
+                    deleteButtonMode()
+                })
+            }else{
+                chrome.storage.sync.set({'resources': [newResource]}, function() {
+                    paragraph.textContent = 'Salvo com sucesso'
+                    deleteButtonMode()
+                })
+            }
+        });
     })
 }
 
 document.addEventListener('DOMContentLoaded', ()=>{
     chrome.storage.sync.get(['resources'], function(result) {
+        console.log(result.resources)
         chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
             currentUrl = tabs[0].url
             if(result.resources && result.resources.length > 0){
@@ -57,10 +89,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
                     deleteButtonMode()
                     paragraph.textContent = 'Essa página já foi salva como possível recurso, entre no seu painel do ReaCloud para administrá-la'
                 }else{
-                    button.addEventListener('click',save)
+                    button.addEventListener('click', save);
                 }
             }else{
-                button.addEventListener('click',save)
+                button.addEventListener('click', save);
             }
         })
     })
