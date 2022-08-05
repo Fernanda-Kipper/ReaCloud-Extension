@@ -32,42 +32,53 @@ function deleteButtonMode(){
 }
 
 function save(){
-    chrome.storage.sync.get(['resources'], function(result) {
+    chrome.storage.sync.get(['resources'], function(storage) {
 
-        let newResource;
+        let newResource = null
 
-        chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
-            
-
-            //Extração do ID do vídeo a partir da URL
-            var video_id = (tabs[0].url).split('v=')[1];
-            var endPosition = video_id.indexOf('&');
-            if(endPosition != -1) {
+        if(currentUrl.includes("www.youtube.com/watch?v=")){ // Youtube Video Case
+            let video_id = currentUrl.split('v=')[1];
+            let endPosition = video_id.indexOf('&');
+            if(endPosition != -1) 
             video_id = video_id.substring(0, endPosition);
-            }
-
-            console.log(video_id)
 
             fetch("https://youtube.googleapis.com/youtube/v3/videos?part=snippet&id=" + video_id + "&key=AIzaSyCOKOSVWLbAmThCnn4L4W3AjpPhOUDMQHk")
-            .then((data)=>{
+            .then((data) => {
                 return data.json()
-            }).then((result) => {
-                console.log(result)     
-                console.log(result.items)
-                console.log(result.items[0].snippet)
             })
-
+            .then((result) => {
+                newResource = {
+                    link: currentUrl, 
+                    title: input.value,
+                    videoTitle: result.items[0].snippet.title,
+                    channel: result.items[0].snippet.channelTitle,
+                    description: result.items[0].snippet.description
+                }
+                return newResource;
+            })
+            .then((newResource) => {
+                console.log(newResource);
+                console.log(storage);
+                if(storage.resources && storage.resources.length > 0){
+                    chrome.storage.sync.set({'resources': [...storage.resources, newResource]}, function() {
+                        paragraph.textContent = 'Salvo com sucesso'
+                        deleteButtonMode()
+                    })
+                }else{
+                    chrome.storage.sync.set({'resources': [newResource]}, function() {
+                        paragraph.textContent = 'Salvo com sucesso'
+                        deleteButtonMode()
+                    })
+                }                
+            })
+        }
+        else{
             newResource = {
                 link: currentUrl, 
-                title: input.value,
-                description: "null",
-                author: "null",
-                }
-
-                console.log(newResource);
-
-            if(result.resources && result.resources.length > 0){
-                chrome.storage.sync.set({'resources': [...result.resources, newResource]}, function() {
+                title: input.value
+            }
+            if(storage.resources && storage.resources.length > 0){
+                chrome.storage.sync.set({'resources': [...storage.resources, newResource]}, function() {
                     paragraph.textContent = 'Salvo com sucesso'
                     deleteButtonMode()
                 })
@@ -76,25 +87,29 @@ function save(){
                     paragraph.textContent = 'Salvo com sucesso'
                     deleteButtonMode()
                 })
-            }
-        });
+            }  
+        }
     })
 }
 
 document.addEventListener('DOMContentLoaded', ()=>{
     chrome.storage.sync.get(['resources'], function(result) {
-        console.log(result.resources)
         chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
             currentUrl = tabs[0].url
+
+            if(currentUrl.includes("www.youtube.com/watch?v=")){
+                document.getElementById("verified_img").style.visibility = "visible"
+            }
+
             if(result.resources && result.resources.length > 0){
                 if(result.resources.some(element => element.link === currentUrl)){
                     deleteButtonMode()
-                    paragraph.textContent = 'Essa página já foi salva como possível recurso, entre no seu painel do ReaCloud para administrá-la'
+                    paragraph.textContent = 'Essa página já foi salva, entre no seu painel do ReaCloud para administrar ou exclua o recurso.'
                 }else{
-                    button.addEventListener('click', save);
+                    button.addEventListener('click', save)
                 }
             }else{
-                button.addEventListener('click', save);
+                button.addEventListener('click', save)
             }
         })
     })

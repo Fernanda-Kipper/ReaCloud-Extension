@@ -49,6 +49,14 @@ body header img{
     margin-left: 5px;
 }
 
+#verified_img {
+    align-items: right;
+    height: 25px;
+    margin-right: 10px;
+    margin-left: 100px;
+    visibility: hidden;
+}
+
 body main{
     display: flex;
     flex-direction: column;
