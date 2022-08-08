@@ -97,9 +97,19 @@ document.addEventListener('DOMContentLoaded', ()=>{
         chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
             currentUrl = tabs[0].url
 
-            if(currentUrl.includes("www.youtube.com/watch?v=")){
-                document.getElementById("verified_img").style.visibility = "visible"
-            }
+            fetch("supported.json")
+            .then(response => response.json())
+            .then(
+            json => {
+                console.log(json)
+                if(json.supportedRepos.some(element => currentUrl.includes(element))){
+                    document.getElementById("verified_img").src="images/verified.png"
+                    //document.getElementById("verified_img").style.visibility = "visible"
+                }
+                else{
+                    document.getElementById("verified_img").src="images/notsupported.png"
+                }
+            });
 
             if(result.resources && result.resources.length > 0){
                 if(result.resources.some(element => element.link === currentUrl)){
