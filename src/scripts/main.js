@@ -102,9 +102,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
             .then(
             json => {
                 console.log(json)
-                if(json.supportedRepos.some(element => currentUrl.includes(element))){
+                if(json.developing.some(element => currentUrl.includes(element))){
                     document.getElementById("verified_img").src="images/verified.png"
-                    //document.getElementById("verified_img").style.visibility = "visible"
                 }
                 else{
                     document.getElementById("verified_img").src="images/notsupported.png"
