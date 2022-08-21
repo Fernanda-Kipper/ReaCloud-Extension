@@ -110,9 +110,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
             .then(
             json => {
                 console.log(json)
-                if(json.supportedRepos.some(element => currentUrl.includes(element))){
-                    signal_popup.src="images/developing.png"
-                    signal_popup.title="Este recurso está em desenvolvimento"
+                if(json.developing.some(element => currentUrl.includes(element))){
+                    document.getElementById("verified_img").src="images/verified.png"
                 }
                 else{
                     signal_popup.src="images/notsupported.png"

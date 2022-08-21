@@ -1,8 +1,10 @@
 {
-    "supportedRepos": [
-        "youtube.com",
+    "developing": [
         "proedu.rnp.br",
         "khanacademy.org",
         "scratch.mit.edu"
+    ],
+    "working": [
+        "youtube.com"
     ]
 }
