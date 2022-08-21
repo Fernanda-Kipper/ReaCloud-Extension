@@ -31,6 +31,12 @@ function deleteButtonMode(){
     label.style = 'display: none;'
 }
 
+function saveYt(){
+}
+
+function saveScratch(){
+}
+
 function save(){
     chrome.storage.sync.get(['resources'], function(storage) {
 
@@ -97,17 +103,20 @@ document.addEventListener('DOMContentLoaded', ()=>{
         chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
             currentUrl = tabs[0].url
 
+            let signal_popup = document.getElementById("verified_img")
+
             fetch("supported.json")
             .then(response => response.json())
             .then(
             json => {
                 console.log(json)
                 if(json.supportedRepos.some(element => currentUrl.includes(element))){
-                    document.getElementById("verified_img").src="images/verified.png"
-                    //document.getElementById("verified_img").style.visibility = "visible"
+                    signal_popup.src="images/developing.png"
+                    signal_popup.title="Este recurso está em desenvolvimento"
                 }
                 else{
-                    document.getElementById("verified_img").src="images/notsupported.png"
+                    signal_popup.src="images/notsupported.png"
+                    signal_popup.title="Este recurso ainda não tem grande compatibilidade com o ReaCloud"
                 }
             });
 
