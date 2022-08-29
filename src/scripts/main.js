@@ -2,7 +2,9 @@ const button = document.getElementById('button')
 const paragraph = document.getElementById('paragraph')
 const input = document.getElementById('title-input')
 const label = document.getElementById('label')
+let signal_popup = document.getElementById("verified_img")
 let currentUrl = ''
+let currentSrc = ''
 
 function afterExclusionMode(){
     button.removeAttribute('class')
@@ -31,17 +33,25 @@ function deleteButtonMode(){
     label.style = 'display: none;'
 }
 
-function saveYt(){
+function saveUnsupported(){
+    chrome.storage.sync.get(['resources'], function(result) {
+        let newResource = {link: currentUrl, title: input.value}
+        if(result.resources && result.resources.length > 0){
+            chrome.storage.sync.set({'resources': [...result.resources, newResource]}, function() {
+                paragraph.textContent = 'Salvo com sucesso'
+                deleteButtonMode()
+            })
+        }else{
+            chrome.storage.sync.set({'resources': [newResource]}, function() {
+                paragraph.textContent = 'Salvo com sucesso'
+                deleteButtonMode()
+            })
+        }
+    })
 }
 
-function saveScratch(){
-}
-
-function save(){
+function saveYoutube(){
     chrome.storage.sync.get(['resources'], function(storage) {
-
-        let newResource = null
-
         if(currentUrl.includes("www.youtube.com/watch?v=")){ // Youtube Video Case
             let video_id = currentUrl.split('v=')[1];
             let endPosition = video_id.indexOf('&');
@@ -53,7 +63,7 @@ function save(){
                 return data.json()
             })
             .then((result) => {
-                newResource = {
+                let newResource = {
                     link: currentUrl, 
                     title: input.value,
                     videoTitle: result.items[0].snippet.title,
@@ -78,22 +88,21 @@ function save(){
                 }                
             })
         }
-        else{
-            newResource = {
-                link: currentUrl, 
-                title: input.value
-            }
-            if(storage.resources && storage.resources.length > 0){
-                chrome.storage.sync.set({'resources': [...storage.resources, newResource]}, function() {
-                    paragraph.textContent = 'Salvo com sucesso'
-                    deleteButtonMode()
-                })
-            }else{
-                chrome.storage.sync.set({'resources': [newResource]}, function() {
-                    paragraph.textContent = 'Salvo com sucesso'
-                    deleteButtonMode()
-                })
-            }  
+    })
+}
+
+function save(){
+    chrome.storage.sync.get(['resources'], function(storage) {
+
+        switch(currentSrc) {
+        case "youtube.com":
+            saveYoutube()
+          break;
+        case "scratch.mit.edu":
+          // code block
+          break;
+        default:
+          saveUnsupported()
         }
     })
 }
@@ -103,21 +112,35 @@ document.addEventListener('DOMContentLoaded', ()=>{
         chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
             currentUrl = tabs[0].url
 
-            let signal_popup = document.getElementById("verified_img")
+            // Análise no arquivo supported.json e armazenamento da fonte do recurso
 
             fetch("supported.json")
             .then(response => response.json())
             .then(
             json => {
-                console.log(json)
-                if(json.developing.some(element => currentUrl.includes(element))){
-                    document.getElementById("verified_img").src="images/verified.png"
-                }
-                else{
-                    signal_popup.src="images/notsupported.png"
-                    signal_popup.title="Este recurso ainda não tem grande compatibilidade com o ReaCloud"
-                }
-            });
+                if(json.working.some(element => {
+                    if(currentUrl.includes(element)){
+                        currentSrc = element            
+                        console.log(currentSrc)
+                        return true
+                    }
+                        else return false
+                    })){
+                        signal_popup.src ="images/verified.png"
+                        signal_popup.title ="Este recurso é otimizado pelo ReaCloud!"
+                    }
+                else if(json.developing.some(element => {
+                    if(currentUrl.includes(element)){
+                        currentSrc = element            
+                        console.log(currentSrc)
+                        return true
+                    }
+                        else return false
+                    })){
+                        signal_popup.src = "images/developing.png"
+                        signal_popup.title = "O suporte a este recurso está em desenvolvimento"
+                    }
+            })
 
             if(result.resources && result.resources.length > 0){
                 if(result.resources.some(element => element.link === currentUrl)){
