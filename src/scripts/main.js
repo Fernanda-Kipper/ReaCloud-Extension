@@ -73,8 +73,6 @@ function saveYoutube(){
                 return newResource;
             })
             .then((newResource) => {
-                console.log(newResource);
-                console.log(storage);
                 if(storage.resources && storage.resources.length > 0){
                     chrome.storage.sync.set({'resources': [...storage.resources, newResource]}, function() {
                         paragraph.textContent = 'Salvo com sucesso'
@@ -85,10 +83,62 @@ function saveYoutube(){
                         paragraph.textContent = 'Salvo com sucesso'
                         deleteButtonMode()
                     })
-                }                
+                }         
+            })
+            .catch(err => {
+                console.log("Erro no Fetch da Youtube API")
+                console.log(err)
             })
         }
     })
+}
+
+function saveScratch(){
+    chrome.storage.sync.get(['resources'], function(storage) {
+        if(currentUrl.includes("scratch.mit.edu/projects/")){
+            let project_id = currentUrl.split("projects/")[1]
+            project_id = project_id.split(project_id.slice(-1))[0]
+            console.log(project_id)
+            console.log("api.scratch.mit.edu/projects/" + project_id)
+
+            fetch("https://api.scratch.mit.edu/projects/" + project_id)
+            .then((response) => {
+                return response.json()
+            })
+            .then((result) => {
+                let newResource = {
+                    title: result.title,
+                    projectId: result.id,
+                    link: currentUrl,
+                    instructions: result.instructions,
+                    description: result.description,
+                    project_token: result.project_token
+                }
+                return newResource;
+            })
+            .then((newResource) => {
+                if(storage.resources && storage.resources.length > 0){
+                    chrome.storage.sync.set({'resources': [...storage.resources, newResource]}, function() {
+                        paragraph.textContent = 'Salvo com sucesso'
+                        deleteButtonMode()
+                    })
+                }else{
+                    chrome.storage.sync.set({'resources': [newResource]}, function() {
+                        paragraph.textContent = 'Salvo com sucesso'
+                        deleteButtonMode()
+                    })
+                }         
+            })
+            .catch(err => {
+                console.log("Erro no Fetch da API Scratch")
+                console.log(err)
+            })
+        }
+    })
+}
+
+function saveKhanAcademy(){
+
 }
 
 function save(){
@@ -97,12 +147,15 @@ function save(){
         switch(currentSrc) {
         case "youtube.com":
             saveYoutube()
-          break;
+                break;
         case "scratch.mit.edu":
-          // code block
-          break;
+            saveScratch()
+                break;
+        case "khanacademy.org":
+            saveKhanAcademy()
         default:
-          saveUnsupported()
+            saveUnsupported()
+                break;
         }
     })
 }

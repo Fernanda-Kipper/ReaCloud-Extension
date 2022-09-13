@@ -13,7 +13,8 @@
     },
     "permissions": [
         "storage",
-        "tabs"
+        "tabs",
+        "unlimitedStorage"
     ],
     "externally_connectable": {
         "matches": ["https://*.reacloud.com.br/*"]

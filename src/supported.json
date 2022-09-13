@@ -1,10 +1,10 @@
 {
     "developing": [
         "proedu.rnp.br",
-        "khanacademy.org",
-        "scratch.mit.edu"
+        "khanacademy.org"
     ],
     "working": [
-        "youtube.com"
+        "youtube.com",
+        "scratch.mit.edu"
     ]
 }
