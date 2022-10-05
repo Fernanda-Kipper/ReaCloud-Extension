@@ -115,6 +115,10 @@ body main label{
     margin: 0 auto;
 }
 
+#clearButton{
+    font-family: 'Relaway', Arial, Helvetica, sans-serif;
+}
+
 body main div{
     border-top: 2px solid #d3d3d3;
     width: 100%;
@@ -154,4 +158,8 @@ body main div img{
 body section div ul li{
     text-align: center;
     font-size: larger;
+}
+
+#clearButton{
+    margin-left: 85px;
 }

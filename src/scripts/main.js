@@ -64,7 +64,7 @@ function saveYoutube(){
             })
             .then((result) => {
                 let newResource = {
-                    link: currentUrl, 
+                    link: currentUrl,
                     title: input.value,
                     videoTitle: result.items[0].snippet.title,
                     channel: result.items[0].snippet.channelTitle,
@@ -138,12 +138,11 @@ function saveScratch(){
 }
 
 function saveKhanAcademy(){
-
+    // in future
 }
 
 function save(){
     chrome.storage.sync.get(['resources'], function(storage) {
-
         switch(currentSrc) {
         case "youtube.com":
             saveYoutube()
@@ -151,8 +150,8 @@ function save(){
         case "scratch.mit.edu":
             saveScratch()
                 break;
-        case "khanacademy.org":
-            saveKhanAcademy()
+        /*case "khanacademy.org":
+            saveKhanAcademy()*/
         default:
             saveUnsupported()
                 break;
