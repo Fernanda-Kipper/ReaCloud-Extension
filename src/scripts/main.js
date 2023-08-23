@@ -41,12 +41,11 @@ function saveYoutube() {
                 title: input.value,
                 videoTitle: snippet.title,
                 channel: snippet.channelTitle,
-                description: snippet.description
+                description: snippet.description.substring(0, 100)
             };
 
             chrome.storage.sync.get(['resources'], function(storage) {
                 const updatedResources = storage.resources ? [...storage.resources, newResource] : [newResource];
-
                 chrome.storage.sync.set({ resources: updatedResources }, function() {
                     window.location.href = "./saveFeedBackADDED.html";
                 });
@@ -116,11 +115,17 @@ function save() {
 }
 
 document.addEventListener('DOMContentLoaded', ()=>{
+
+    chrome.storage.sync.get(['resources'], function(result){
+        if (result.resources && result.resources.length >= 8) {
+            window.location.href = "./saveFeedBackFULL.html";
+        }})
+
     chrome.storage.sync.get(['resources'], function(result) {
         chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
             currentUrl = tabs[0].url
 
-            // Análise no arquivo supported.json e armazenamento da fonte do recurso
+            // Análise no arquivo supported.json e armazenamento do source do recurso
 
             fetch("supported.json")
             .then(response => response.json())
