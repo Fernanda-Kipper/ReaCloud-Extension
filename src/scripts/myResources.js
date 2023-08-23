@@ -1,10 +1,12 @@
 let listaHTML = document.getElementById("Salvos");
 
 document.getElementById("clearButton").addEventListener("click", clearLocalResources);
+document.getElementById("button").addEventListener("click", getback);
 
 document.addEventListener('DOMContentLoaded', function showElements(){
     chrome.storage.sync.get(['resources'], function(result){
         result.resources.forEach(element => {
+            console.log(result);
             let newElement = document.createElement("a")
             newElement.href = element.link
             newElement.target = "_blank"
@@ -22,4 +24,8 @@ function clearLocalResources(){
         chrome.storage.sync.clear();
     });
     listaHTML.innerHTML = '';
+}
+
+function getback(){
+    window.location.href = "./popup.html";
 }

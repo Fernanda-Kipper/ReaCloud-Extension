@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <title>Recursos Locais</title>
+    <title>Extensão Rea Cloud</title>
 </head>
 <body>
     <header>
@@ -24,24 +24,20 @@
             </div>
 
             <p id="MeusMateriaisText">MEUS MATERIAIS</p>
-            <button id="clearButton"></button>
-        </a>
 
+        </a>
+        
     </header>
     <main>
-        <section id="myResourcesBody">
 
-            <p id="materiaisSalvos">LISTA DE MATERIAIS SALVOS</p>
+        <div id="addedResource">
+            <img src="images/wrong.svg" alt="Algum erro ocorreu.">
+            <p id="errorResource"> Algum erro ocorreu ao adicionar este recurso. </p>    
+        </div>
+        
+        <button id="button">Voltar</button>
 
-            <div>
-                <ul id="Salvos">
-                </ul>
-            </div>
-
-        </section>
-
-        <button id="button">VOLTAR</button>
     </main>
 </body>
-<script src="scripts/myResources.js"></script>
+<script src="scripts/feedback.js"></script>
 </html>
