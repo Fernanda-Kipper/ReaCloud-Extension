@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
     "name": "ReaCloud",
-    "description": "Salva URL´s de possíveis recursos educacionais e administre depois no seu painel do Reacloud",
-    "version": "1.2.1",
+    "description": "Salva Metadados de recursos educacionais para póstuma administração no Painel ReaCloud",
+    "version": "1.3",
     "web_accessible_resources": [{
         "resources": ["images/*"],
         "matches": ["<all_urls>"]
@@ -16,9 +16,16 @@
         "tabs"
     ],
     "externally_connectable": {
-        "matches": ["https://*.reacloud.com.br/*"]
+        "matches": 
+        ["https://*.reacloud.com.br/*",
+         "http://localhost:5173/*"]
     },
     "background": {
         "service_worker": "src/scripts/background.js"
-    }
+    },
+    "content_scripts": [{
+          "matches": ["http://*/*", "https://*/*"],
+          "js": ["src/scripts/main.js"]
+        }
+    ]
 }

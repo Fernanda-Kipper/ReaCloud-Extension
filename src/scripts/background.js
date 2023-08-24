@@ -1,3 +1,9 @@
+chrome.runtime.onMessageExternal.addListener((request, sender, sendResponse) => {
+    if (request === 'isExtensionInstalled') {
+      sendResponse(true);
+    }
+});
+
 chrome.runtime.onMessageExternal.addListener(
     function(request, sender, sendResponse) {
         if(request.getTargetData){

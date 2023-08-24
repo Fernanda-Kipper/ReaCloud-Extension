@@ -1,29 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <title>Extensão Rea Cloud</title>
 </head>
 <body>
     <header>
-        <img src="images/icon.png" alt="Logo">
-        <h1>Rea Cloud</h1>
+
+        <div id="LogoContainer">
+            <img src="images/Logo.svg" alt="Logo">    
+        </div>
+        
+        <a href="myResources.html" id="MeusMateriais">
+
+            <div id="BookmarkContainer">
+                <img src="images/Bookmark_light.svg" alt="Marcador">
+            </div>
+
+            <p id="MeusMateriaisText">MEUS MATERIAIS</p>
+
+        </a>
+        
     </header>
     <main>
-        <section>
-            <p id="paragraph">Armazene links de recursos educacionais para mais tarde publicá-los no repositório</p>
-            <label id="label">Titulo do material</label>
-            <input id="title-input" name="title"/>
-            <button id="button">Guardar</button>
+        <p id="paragraph">Salve links de recursos educacionais e acesse o <strong id = "ReaCloud"> <a href="http://localhost:5173/" target="_blank">ReaCloud</a> </strong> para publicá-los no repositório.</p>
+
+        <section id="inputSection">
+
+            <div id="sourceFeedback">
+                <span id="dynamicSource"></span>
+                <div id="internalContainer">
+                    <span id="compatibility"></span>
+                    <div>
+                        <img id="checkImg" src="" alt="Check">   
+                    </div>
+                </div>
+            </div>
+
+            <div id="linkInputContainer" class="inputContainer">
+                <label htmlFor="link" class="inputLabel">LINK DO MATERIAL</label>
+                <input id="link-input" type="text" name="link" class="inputBox" placeholder="Link do Material" />
+            </div>
+
+            <div class="inputContainer">
+                <label htmlFor="name" class="inputLabel">NOME DO MATERIAL</label>
+                <input id="title-input" type="text" name="title" class="inputBox" placeholder="Nome do Material" />
+            </div>
+
         </section>
-        <div>
-            <img src="images/bookmark-icon.png" alt="Materiais">
-            <a href="https://reacloud.com.br/plugin" target="_blank">Meus materiais</a>
-        </div>
+
+        <button id="button">SALVAR</button>
     </main>
 </body>
 <script src="scripts/main.js"></script>
