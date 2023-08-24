@@ -2,7 +2,7 @@ chrome.runtime.onMessageExternal.addListener((request, sender, sendResponse) => 
     if (request === 'isExtensionInstalled') {
       sendResponse(true);
     }
-  });
+});
 
 chrome.runtime.onMessageExternal.addListener(
     function(request, sender, sendResponse) {
@@ -26,9 +26,6 @@ chrome.runtime.onMessageExternal.addListener(
             }catch(error){
                 return sendResponse({deleted: false})
             }
-        }
-        else if(request.version){
-            return sendResponse({version: 1.3})
         }
     }
 )
