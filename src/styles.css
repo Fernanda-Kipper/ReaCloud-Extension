@@ -29,20 +29,27 @@ html{
     margin-top: 2px;
 }
 
-#MeusMateriais{
-    cursor: pointer;
-    margin-top: 1.5px;
-    display: flex;
-    gap: 4px;
-    align-items: center;
-}
-
 #MeusMateriaisText{
     color: white;
     font-weight: 600;
     font-size: 11px;
     white-space: nowrap;
     letter-spacing: 0.6px;
+}
+
+#MeusMateriaisText:hover{
+    transition: .2s;
+    color: gray;
+}
+
+#MeusMateriais{
+    cursor: pointer;
+    margin-top: 1.5px;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    text-decoration: none;
+    transition: .2s;
 }
 
 header{
