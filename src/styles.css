@@ -208,7 +208,7 @@ body section div ul li{
     color: #BEBEBE;
 }
 
-#button {
+#button, #buttonFechar {
     color: white;
     margin: 15px 10px;
     background-color: #4F518C;
@@ -221,7 +221,7 @@ body section div ul li{
     transition: 0.2s;
 }
 
-#button:hover {
+#button:hover, #buttonFechar:hover {
     background-color: rgb(47, 12, 143);
     color: white;
     transition: 0.2s;
