@@ -19,7 +19,8 @@
         "matches": 
         ["https://*.reacloud.com.br/*",
          "http://localhost:5173/*",
-         "https://*.onrender.com/*"
+         "https://*.onrender.com/*",
+         "https://reacloudback.onrender.com/*"
         ]
     },
     "background": {
