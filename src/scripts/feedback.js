@@ -7,3 +7,7 @@ function save(){
 document.addEventListener('DOMContentLoaded', ()=>{
     button.addEventListener('click', save)
 })
+
+document.getElementById("buttonFechar").addEventListener("click", function() {
+    window.close();
+});

@@ -18,7 +18,11 @@
     "externally_connectable": {
         "matches": 
         ["https://*.reacloud.com.br/*",
-         "http://localhost:5173/*"]
+         "http://localhost:5173/*",
+         "https://*.onrender.com/*",
+         "https://reacloudback.onrender.com/*",
+         "<all_urls>"
+        ]
     },
     "background": {
         "service_worker": "src/scripts/background.js"
