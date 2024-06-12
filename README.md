@@ -9,6 +9,7 @@
 <p align="center">
  <a href="#project">Projeto</a> •
  <a href="#running">Rodando localmente</a> • 
+  <a href="#running">Deploy</a> • 
  <a href="#contribute">Contribuindo</a>
 </p>
 
@@ -43,6 +44,22 @@ Dentro do array de `matches` você deve adicionar a URL local que deseja conecta
       "matches": ["https://reacloud.com.br/*", "http://localhost:3000/*"]
   },
 ```
+
+
+<h2 id="contribute">Deploy 🚀</h2>
+
+Para fazer o deploy da extensão siga esse passo a passo:
+
+1. Atualize a versão da extensão no `manifest.json`
+2. Compacte a pasta do projeto (gerando um .zip)
+3. Entre na Chrome Web Store, no Dashboard de Desenvolvedor
+4. Troque para a conta do Reacloud
+
+<img src="./.github/print-1.png"/>
+
+5. Suba o pacote da nova versão
+6. Clique em "Salvar Rascunho" e o "Enviar para análise"
+6. Espere! O Google enviará um email quando tudo estiver pronto :)
 
 <h2 id="contribute">Contribuindo 🚀</h2>
 
